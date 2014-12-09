@@ -16,7 +16,11 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import in.microsun.foodpantry.Entities.FoodItem;
 import in.microsun.foodpantry.Entities.Member;
+import in.microsun.foodpantry.Entities.MemberVisit;
+import in.microsun.foodpantry.Services.FoodItemsService;
+import in.microsun.foodpantry.Services.MemberVisitsService;
 import in.microsun.foodpantry.Services.MembersService;
 
 public class MainActivity extends ActionBarActivity
@@ -67,13 +71,33 @@ public class MainActivity extends ActionBarActivity
                 for(Member m : values)
                 {
                     name = m.getFirstName();
+                    break;
                 }
+                mTitle = name;
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                FoodItemsService service2 = new FoodItemsService();
+                List<FoodItem> values2 = service2.Get();
+                String name2 = "";
+                for(FoodItem m : values2)
+                {
+                    name2 = m.getItemName();
+                    break;
+                }
+                mTitle = name2;
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                MemberVisitsService service3 = new MemberVisitsService();
+                List<MemberVisit> values3 = service3.Get();
+                String name3 = "";
+                for(MemberVisit m : values3)
+                {
+                    name3 = m.getVisitedOn().toString();
+                    break;
+                }
+                mTitle = name3;
                 break;
         }
     }
